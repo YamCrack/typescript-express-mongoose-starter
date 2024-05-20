@@ -10,7 +10,7 @@ class UsersController {
     try {
       const findAllUsersData: User[] = await this.userService.findAllUser();
 
-      res.status(200).json({ data: findAllUsersData, message: 'findAll' });
+      res.status(200).json({ users: findAllUsersData, message: 'findAll' });
     } catch (error) {
       next(error);
     }
@@ -21,7 +21,7 @@ class UsersController {
       const userId: string = req.params.id;
       const findOneUserData: User = await this.userService.findUserById(userId);
 
-      res.status(200).json({ data: findOneUserData, message: 'findOne' });
+      res.status(200).json({ user: findOneUserData, message: 'findOne' });
     } catch (error) {
       next(error);
     }
@@ -32,7 +32,7 @@ class UsersController {
       const userData: CreateUserDto = req.body;
       const createUserData: User = await this.userService.createUser(userData);
 
-      res.status(201).json({ data: createUserData, message: 'created' });
+      res.status(201).json({ user: createUserData, message: 'created' });
     } catch (error) {
       next(error);
     }
@@ -44,7 +44,7 @@ class UsersController {
       const userData: CreateUserDto = req.body;
       const updateUserData: User = await this.userService.updateUser(userId, userData);
 
-      res.status(200).json({ data: updateUserData, message: 'updated' });
+      res.status(200).json({ user: updateUserData, message: 'updated' });
     } catch (error) {
       next(error);
     }
@@ -55,7 +55,7 @@ class UsersController {
       const userId: string = req.params.id;
       const deleteUserData: User = await this.userService.deleteUser(userId);
 
-      res.status(200).json({ data: deleteUserData, message: 'deleted' });
+      res.status(200).json({ user: deleteUserData, message: 'deleted' });
     } catch (error) {
       next(error);
     }

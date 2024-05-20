@@ -1,0 +1,23 @@
+# baseURL
+@baseURL = http://localhost:3000/api
+
+## Create cirugia
+POST {{baseURL}}/cirugias
+Content-Type: application/json
+
+{
+    "fecha": "2024-12-12T12:00:00.000Z",
+    "hora": "12:00",
+    "cirugia": "Cirugia de prueba",
+    "medico": "Dr. Prueba",
+    "anestesiologo": "Anestesiologo de prueba",
+    "fechaProg": "2019-12-12",
+    "equiposApoyo": "Equipo de prueba\nOtro equipo de prueba",
+    "qx": "1"
+ }
+
+### 2. Consultar cirugias
+GET {{baseURL}}/cirugias
+
+## 3. Consultar cirugia por id
+
