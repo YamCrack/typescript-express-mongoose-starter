@@ -62,20 +62,54 @@ class App {
   }
 
   private initializeMiddlewares() {
+
+
     this.app.use(morgan(LOG_FORMAT, { stream }));
     this.app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
     this.app.use(hpp());
-    this.app.use(helmet());
+    this.app.use(helmet({
+      contentSecurityPolicy: false,
+    }));
+    //   this.app.use(helmet.contentSecurityPolicy({
+    //     useDefaults: false,
+    //     directives: {
+    //         defaultSrc: ["'self'"],
+    //         scriptSrc: ["'self'", "'unsafe-inline'","code.jquery.com","*.jsdelivr.net", "localhost", "yam-soft.com"],
+    //         unsafeEval: ["'self'"],
+    //         "style-src":["'self'","'unsafe-inline'","*.cloudflare.com","*.googleapis.com","*.jsdelivr.net"],
+    //         "font-src":["'self'","*.gstatic.com","*.cloudflare.com","*.jsdelivr.net"],
+    //         "img-src":["'self'","data:"]
+    //       }
+    // }));
     this.app.use(compression());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+
+    const app_folder = "public";
+    const options = {
+      dotfiles: 'ignore',
+      etag: false,
+      extensions: ['html', 'js', 'scss', 'css'],
+      index: false,
+      maxAge: '1y',
+      redirect: true,
+    }
+
+    this.app.use(express.static(app_folder, options));
+
+
   }
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach(route => {
       this.app.use('/', route.router);
     });
+
+    // serve angular paths
+    this.app.all('*', function (req, res) {
+      res.status(200).sendFile(`/`, { root: 'public' });
+    });    
   }
 
   private initializeSwagger() {

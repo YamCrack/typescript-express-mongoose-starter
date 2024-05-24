@@ -8,6 +8,7 @@ import CirugiasRoute from './routes/cirugias.route';
 validateEnv();
 
 
-const app = new App([new IndexRoute(), new UsersRoute(), new AuthRoute(),  new CirugiasRoute()]);
+// new IndexRoute(),
+const app = new App([ new UsersRoute(), new AuthRoute(),  new CirugiasRoute()]);
 
 app.listen();
