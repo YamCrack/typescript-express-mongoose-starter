@@ -86,7 +86,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
 
-    const app_folder = "public";
+    const app_folder = "/home/rocky/public";
     const options = {
       dotfiles: 'ignore',
       etag: false,
