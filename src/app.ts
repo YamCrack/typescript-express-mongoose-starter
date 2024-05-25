@@ -108,7 +108,7 @@ class App {
     });
 
     // serve angular paths
-    this.app.all('*', function (req, res) {
+    this.app.all('*',  (req, res) => {
       res.status(200).sendFile(`/`, { root: this.app_folder });
     });    
   }
