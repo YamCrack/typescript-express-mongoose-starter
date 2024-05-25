@@ -26,7 +26,7 @@ module.exports = {
       repo : 'https://github.com/YamCrack/typescript-express-mongoose-starter.git',
       path : '~/api',
       'pre-deploy-local': '',
-      'post-deploy' : 'npm install && npm buiid && PORT=80 pm2 restart ecosystem.config.js --env production',
+      'post-deploy' : 'npm install && npm build && pm2 restart ecosystem.config.js --env production',
       'pre-setup': ''
     }
   }
