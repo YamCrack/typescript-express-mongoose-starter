@@ -1,9 +1,15 @@
 import { DB_HOST, DB_PORT, DB_DATABASE } from '@config';
+import { ConnectOptions } from 'mongoose';
 
-export const dbConnection = {
+export interface IDatabase {
+  url: string;
+  options?: ConnectOptions;
+}
+
+export const dbConnection: IDatabase = {
   url: `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`,
   options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    user: DB_USER,
+    pass: DB_PASS,
   },
 };
