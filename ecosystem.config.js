@@ -21,7 +21,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'rocky',
-      host : '140.84.185.74',
+      host : 'hej.yam-soft.com', // 140.84.185.74
       ref  : 'origin/main',
       repo : 'https://github.com/YamCrack/typescript-express-mongoose-starter.git',
       path : '~/api',
