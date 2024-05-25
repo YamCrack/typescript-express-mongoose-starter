@@ -17,8 +17,9 @@ import { logger, stream } from '@utils/logger';
 class App {
   public app: express.Application;
   public env: string;
-  public port: string | number;
-
+  public port: string | number;    
+  private app_folder = "/home/rocky/public";
+  
   constructor(routes: Routes[]) {
     this.app = express();
     this.env = NODE_ENV || 'development';
@@ -86,7 +87,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
 
-    const app_folder = "/home/rocky/public";
+
     const options = {
       dotfiles: 'ignore',
       etag: false,
@@ -96,7 +97,7 @@ class App {
       redirect: true,
     }
 
-    this.app.use(express.static(app_folder, options));
+    this.app.use(express.static(this.app_folder, options));
 
 
   }
@@ -108,7 +109,7 @@ class App {
 
     // serve angular paths
     this.app.all('*', function (req, res) {
-      res.status(200).sendFile(`/`, { root: 'public' });
+      res.status(200).sendFile(`/`, { root: this.app_folder });
     });    
   }
 
